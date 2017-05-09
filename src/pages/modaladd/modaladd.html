@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+{{title}}
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <span ion-text color="primary" showWhen="ios">Cancelar</span>
+        <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="myForm" (ngSubmit)="sendData()">
+    <ion-item>
+      <ion-label floating>Nombre</ion-label>
+      <ion-input type="text" formControlName="name"></ion-input>
+    </ion-item>
+    <p *ngIf="name.hasError('required') && name.touched" color="danger" padding-left>El nombre es requerido</p>
+    <ion-item>
+      <ion-label floating>Nombre de usuario</ion-label>
+      <ion-input type="text" formControlName="username"></ion-input>
+    </ion-item>
+    <p *ngIf="username.hasError('required') && username.touched" color="danger" padding-left>El nombre de usuario es requerido</p>
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input type="password" formControlName="password"></ion-input>
+    </ion-item>
+    <p *ngIf="password.hasError('required') && password.touched" color="danger" padding-left>El password es requerido</p>
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <p *ngIf="email.hasError('required') && email.touched" color="danger" padding-left>El email es requerido</p>
+    <p *ngIf="email.hasError('pattern') && email.touched" color="danger" padding-left>El formato del correo no es correcto</p>
+    <ion-item>
+      <ion-label>Fecha de Nacimiento</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" formControlName="birthday"></ion-datetime>
+    </ion-item>
+    <p *ngIf="birthday.hasError('required') && email.touched" color="danger" padding-left>Selecciona una fecha de nacimiento</p>    
+
+    <ion-fab bottom right>
+      <button ion-fab type="submit" [disabled]="!myForm.valid">
+          <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-fab>
+  </form>
+
+</ion-content>

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let user of users">
+    <ion-item>
+      <h2>{{user.name}}</h2>
+    </ion-item>
+    <ion-item-options side="left">
+      <button ion-button (click)="editar(user._id)" color="primary">
+        <ion-icon name="create"></ion-icon>
+        Editar
+      </button>
+      <button ion-button (click)="borrar(user._id)" color="secondary">
+        <ion-icon name="trash"></ion-icon>
+        Borrar
+      </button>
+    </ion-item-options>
+  </ion-item-sliding>
+  </ion-list>
+  <button ion-button (click)='agregarUsuario()'>Agregar usuario</button>
+</ion-content>
